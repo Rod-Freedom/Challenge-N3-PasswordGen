@@ -41,41 +41,34 @@ const exeRandom = {
   emoji: randomEmo
 }
 
-// Function to be called later on cleck event.
-function createPass(lenght, uppie, lowie, number, symb, emoji) {
+// Function to be called later on click event.
+function createPass(length, uppie, lowie, number, symb, emoji) {
   
-  // To blank the password text.
+  // To set the new variable o the password as an empty string.
   let createdPass = '';
 
   // To count the number of checkboxes in input.
   const checksCount = uppie + lowie + number + symb + emoji;
 
-  // To filter them by true values.
-  const checksArray = [{ uppie }, { lowie }, { number }, { symb }, { emoji }].filter(item => Object.values(item)[0]);
-
-  // console.log('Checks array: ', checksArray)
-
   // Alert if none of the checkbox are checked.
   if (checksCount == 0) {
-    return alert("Your new password doesn't esxists! You need to check at least one type of character.");
+    return alert("Your new password doesn't exists! You need to check at least one type of character.");
   }
 
-  // Loop to generate a password with random characters, in the checkbox order.
-  for (let d = 0; d < lenght; d++) {
-    checksArray.forEach(type => {
-      const funcName = Object.keys(type)[0]; // Takes the first value of the checksArray.
-
-      createdPass += exeRandom[funcName](); // Add a new random character for each loop.
-    })
-  }
-
-  // Scrambles the characters so that the order is always different, and assings it to a new constant; next, it slices it to the length of the input.
-  // There's a problem with using the .split and .slice method, because both tend to cut in half the emojis characters. 
-  const brandNewPass = (createdPass.split('').sort(function(){return 0.5-Math.random()}).join('')).slice(0, lenght);
+  // To filter them by true values and make a new array of objects.
+  const checks = [{ uppie }, { lowie }, { number }, { symb }, { emoji }].filter(item => Object.values(item)[0]);
   
-  // Returns the new scrambled password.
-  return brandNewPass
-}
+  // Loop to add the number of characters at a random order the number of times as the leght user input.
+  for (i = 0; i < length; i++) {
+    const newchar = Object.keys(checks[Math.floor(Math.random() * checks.length)]) // This function will add the key of a random object from the checks array.
+    
+    createdPass += exeRandom[newchar](); // Adds one new character each loop to the createdPass that's blank to begin.
+
+  }
+
+  return createdPass
+
+};
 
 // Executes when clicking button.
 genPassBtn.addEventListener('click', () => {
