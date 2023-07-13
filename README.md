@@ -3,7 +3,7 @@ Generate your new personalized password with one click!
 
 ## **ABOUT THE PROJECT**
 
-This password generator uses input elements to generate a random password. The code still needs refinement, and it's a little repetitive. Including emojis in the passwords resulted in some errors due to the .plit and .slice methods that tend to cut the emojis in half from a string.
+This password generator uses input elements to generate a random password. The code received a recent debugging and it's now shorter and works as planned when adding emojis to the password.
 
 </br>
 
